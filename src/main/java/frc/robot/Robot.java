@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  * project.
  */
 public class Robot extends TimedRobot {
+  private int iterationCount = 0;
   private static final String kDefaultAuto = "Default";
   private static final String kCustomAuto = "My Auto";
   private String m_autoSelected;
@@ -90,18 +91,22 @@ public class Robot extends TimedRobot {
         break;
     }
   }
+
  public void newautonomous() {
   
-  drive.arcadeDrive(0.2,0.0);
-
-  int i = 0;
-  
-  if i  < 250 {
-    i++
-    else retur
+  if (iterationCount  < 100) {
+    iterationCount++;
+    drive.arcadeDrive(0.2,0.0);
+  } else if (iterationCount < 125) {
+    iterationCount++;
+    drive.arcadeDrive(0.0,0.1);
+  } else if (iterationCount < 250) {
+    iterationCount++;
+    drive.arcadeDrive(0.2,0.0);
+  } else {
+    drive.arcadeDrive(0.0,0.0);
   }
-  
-  
+
  }
 
   /** This function is called once when teleop is enabled. */
